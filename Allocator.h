@@ -7,6 +7,7 @@
 
 
 #include "Alloc.h"
+#include "Construct.h"
 
 namespace TinySTL {
 //    空间配置器
@@ -19,7 +20,7 @@ namespace TinySTL {
         typedef T&          reference;
         typedef const T&    const_reference;
         typedef size_t      size_type;
-//        typedef ptrdiff_t   difference_type;
+        typedef ptrdiff_t   difference_type;
     public:
         static T *allocate();
         static T *allocate(size_t n);
@@ -34,13 +35,45 @@ namespace TinySTL {
 
     template <class T>
     T *allocator<T>::allocate() {
-        return ;
+        return (T *)(alloc::allocate(sizeof(T)));
     }
 
     template <class T>
     T *allocator<T>::allocate(size_t n) {
         if (n == 0) return nullptr;
-        return static_cast<T *>(alloc::allocate(sizeof(T) * n));
+        return (T *)(alloc::allocate(sizeof(T) * n));
+    }
+
+    template<class T>
+    void allocator<T>::deallocate(T *ptr){
+        alloc::deallocate((void *)(ptr), sizeof(T));
+    }
+    template<class T>
+    void allocator<T>::deallocate(T *ptr, size_t n){
+        if (n == 0) return;
+        alloc::deallocate((void *)(ptr), sizeof(T)* n);
+    }
+
+    template <class T>
+    void allocator<T>::construct(T *ptr) {
+        new(ptr)T(); // ???
+    }
+
+    template <class T>
+    void allocator<T>::construct(T *ptr, const T &value) {
+        new(ptr)T(value);
+    }
+
+    template<class T>
+    void allocator<T>::destroy(T *ptr){
+        ptr->~T();
+    }
+
+    template<class T>
+    void allocator<T>::destroy(T *first, T *last){
+        for (; first != last; ++first){
+            first->~T();
+        }
     }
 }
 

@@ -41,6 +41,12 @@ namespace TinySTL {
         free_list[index] = node;
     }
 
+    void *alloc::reallocate(void *ptr, size_t old_sz, size_t new_sz) {
+        deallocate(ptr, old_sz);
+        ptr = allocate(new_sz);
+        return ptr;
+    }
+
     // 返回一个大小为n的对象
     // 其中的n已经上调为8的倍数
     void *alloc::refill(size_t n) {
@@ -98,7 +104,7 @@ namespace TinySTL {
             start_free = (char *)malloc(bytes_to_get);
             if (0 == start_free) { // 如果申请动态内存失败
                 obj **my_free_list = 0, *p = 0;
-                for (int i = 0; i <= EMaxBytes::MAXBYTES; i+=EAlign::ALIGN) {
+                for (int i = size; i <= EMaxBytes::MAXBYTES; i+=EAlign::ALIGN) {
                     my_free_list = free_list + FREELIST_INDEX(i);
                     p = *my_free_list;
                     if (p != 0) {
