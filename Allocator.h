@@ -56,7 +56,7 @@ namespace TinySTL {
 
     template <class T>
     void allocator<T>::construct(T *ptr) {
-        new(ptr)T(); // ???
+        new(ptr)T(); // place new, 在ptr指针处覆盖内存, 再进行T类型的初始化
     }
 
     template <class T>

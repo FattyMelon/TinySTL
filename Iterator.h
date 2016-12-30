@@ -85,7 +85,7 @@ namespace TinySTL {
 
     // 偏特化版
     template <class T>
-    struct iterator_traits<T*>
+    struct iterator_traits<T*>  // 原生指针偏特例化
     {
         typedef random_access_iterator_tag 	iterator_category;
         typedef T 							value_type;
@@ -95,7 +95,7 @@ namespace TinySTL {
     };
 
     template <class T>
-    struct iterator_traits<const T*>
+    struct iterator_traits<const T*>    // 指向常数对象的指针,如果const int*,那么萃取出来的value type是int
     {
         typedef random_access_iterator_tag 	iterator_category;
         typedef T 							value_type;
