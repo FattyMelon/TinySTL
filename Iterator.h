@@ -128,10 +128,10 @@ namespace TinySTL {
 
     // 计算迭代器之间的距离
     template <class InputIterator>
-    inline iterator_traits<InputIterator>::difference_type
+    inline typename iterator_traits<InputIterator>::difference_type
     _distance(InputIterator first, InputIterator last,
              input_iterator_tag) {
-        iterator_traits<InputIterator>::difference_type n = 0;
+        typename iterator_traits<InputIterator>::difference_type n = 0;
         while (first != last) {
             ++first;
             ++n;
@@ -140,14 +140,14 @@ namespace TinySTL {
     }
 
     template <class RandomAccessIterator>
-    inline iterator_traits<RandomAccessIterator>::difference_type
+    inline typename iterator_traits<RandomAccessIterator>::difference_type
     _distance(RandomAccessIterator first, RandomAccessIterator last,
              random_access_iterator_tag) {
         return last - first;
     }
 
     template <class InputIterator>
-    inline iterator_traits<InputIterator>::difference_type
+    inline typename iterator_traits<InputIterator>::difference_type
     distance(InputIterator first, InputIterator last) {
 //        typedef typename iterator_traits<InputIterator>::iterator_category category;
 //        return _distance(first, last, category());

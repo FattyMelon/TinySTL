@@ -8,11 +8,10 @@
       <sourceFolder url="file://$MODULE_DIR$/TypeTraits.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UninitializedFunctions.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vector.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Iterator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Allocator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Construct.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Iterator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Uninitialized.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
