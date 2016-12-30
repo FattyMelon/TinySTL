@@ -202,7 +202,7 @@ namespace TinySTL {
     template <class T, class Alloc>
     inline void vector<T,Alloc>::allocateAndFillN(const size_type n, const value_type& value) {
         start = dataAllocator::allocate(n);
-        uninitialized_fill_n(start, n, value);
+        TinySTL::uninitialized_fill_n(start, n, value);
         finish = end_of_storage = start + n;
     }
 
@@ -210,7 +210,7 @@ namespace TinySTL {
     template<class InputIterator>
     inline void vector<T,Alloc>::allocateAndCopy(InputIterator first, InputIterator last) {
         start = dataAllocator::allocate(last - first);
-        finish = uninitialized_copy(first, last, start);
+        finish = TinySTL::uninitialized_copy(first, last, start);
         end_of_storage = finish;
     };
 
